@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Order</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.store.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Include Google Pay API -->
+    <script src="https://pay.google.com/gp/p/js/pay.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+</head>
+
+<body id="checkout-page">
+    <div id="google_translate_element"></div>
+    <div class="hero_area">
+        <div id="site">
+            <header id="masthead">
+                <h1></h1>
+            </header>
+            <div id="content">
+                <h1>Your Order</h1>
+                <table id="checkout-cart" class="shopping-cart">
+                    <thead>
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Cart Items Here -->
+                    </tbody>
+                </table>
+                <div id="pricing">
+                    <p id="shipping">
+                        <strong>Shipping</strong>: <span id="sshipping"></span>
+                    </p>
+                    <p id="sub-total">
+                        <strong>Total</strong>: <span id="stotal"></span>
+                    </p>
+                </div>
+
+                <div id="user-details">
+                    <h2>Your Data</h2>
+                    <div id="user-details-content"></div>
+                </div>
+
+                <!-- Payment Options -->
+                <div id="payment-options">
+                    <!-- Debit/Credit Card Option -->
+                    <button id="card-pay-btn" class="btn">Pay with Debit/Credit Card</button>
+                    <!-- Google Pay Option -->
+                    <button id="google-pay-btn" class="btn">Pay with Google Pay</button>
+                </div>
+
+                <!-- QR Code Placeholder -->
+                <div id="qr-code" style="display: none;">
+                    <!-- QR code will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <footer id="site-info">
+            Copyright &copy; AgroMate 2024
+        </footer>
+
+        <!-- Script for handling payment options -->
+        <script>
+            // Handle Card Pay Button Click
+            document.getElementById('card-pay-btn').addEventListener('click', function () {
+                // Redirect to the page where user can enter card details and complete the purchase
+                window.location.href = 'card_payment_page.html'; // Replace with your actual page URL
+            });
+
+            // Handle Google Pay Button Click
+            document.getElementById('google-pay-btn').addEventListener('click', function () {
+                // Hide payment options
+                document.getElementById('payment-options').style.display = 'none';
+                // Call function to display QR code for Google Pay
+                displayQRCode();
+            });
+
+            // Function to display QR code for Google Pay
+            function displayQRCode() {
+                var qrCodeElement = document.getElementById('qr-code');
+                qrCodeElement.style.display = 'block';
+                qrCodeElement.innerHTML = '<img src="norrig-html\norrig-html\images\qr.jpg" alt="Google Pay QR Code">';
+            }
+        </script>
+    </div>
+</body>
+</html>
